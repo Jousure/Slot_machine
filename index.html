@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="arcade-cabinet">
+        <div class="screen">
+            <div class="header">
+                <h1 class="title">PIXEL SLOTS</h1>
+                <div class="credits">
+                    <span class="label">CREDITS:</span>
+                    <span id="balance" class="value">1000</span>
+                </div>
+            </div>
+
+            <div class="slot-machine">
+                <div class="reels-container">
+                    <div class="reel" id="reel1">
+                        <div class="symbol">A</div>
+                        <div class="symbol">B</div>
+                        <div class="symbol">C</div>
+                    </div>
+                    <div class="reel" id="reel2">
+                        <div class="symbol">D</div>
+                        <div class="symbol">A</div>
+                        <div class="symbol">B</div>
+                    </div>
+                    <div class="reel" id="reel3">
+                        <div class="symbol">C</div>
+                        <div class="symbol">D</div>
+                        <div class="symbol">A</div>
+                    </div>
+                </div>
+                
+                <div class="paylines">
+                    <div class="payline" id="line1"></div>
+                    <div class="payline" id="line2"></div>
+                    <div class="payline" id="line3"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="betting-section">
+                    <div class="bet-control">
+                        <label class="control-label">LINES</label>
+                        <div class="bet-buttons">
+                            <button class="bet-btn" data-lines="1">1</button>
+                            <button class="bet-btn active" data-lines="2">2</button>
+                            <button class="bet-btn" data-lines="3">3</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bet-control">
+                        <label class="control-label">BET/LINE</label>
+                        <div class="bet-amount">
+                            <button class="adjust-btn" id="decreaseBet">-</button>
+                            <span id="betAmount">10</span>
+                            <button class="adjust-btn" id="increaseBet">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="total-bet">
+                        <span class="label">TOTAL BET:</span>
+                        <span id="totalBet" class="value">20</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="spin-btn" id="spinBtn">SPIN</button>
+                    <button class="max-bet-btn" id="maxBetBtn">MAX BET</button>
+                </div>
+            </div>
+
+            <div class="message-display" id="messageDisplay">
+                <span id="messageText">READY TO PLAY!</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">LAST WIN:</span>
+                    <span id="lastWin" class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">TOTAL SPINS:</span>
+                    <span id="totalSpins" class="stat-value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <div class="lever">
+                <div class="lever-handle"></div>
+            </div>
+            <div class="coin-slot"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <h2>ADD CREDITS</h2>
+            <div class="deposit-amounts">
+                <button class="deposit-btn" data-amount="100">$100</button>
+                <button class="deposit-btn" data-amount="500">$500</button>
+                <button class="deposit-btn" data-amount="1000">$1000</button>
+            </div>
+            <div class="custom-deposit">
+                <input type="number" id="customAmount" placeholder="Custom amount" min="1" max="10000">
+                <button id="customDepositBtn">DEPOSIT</button>
+            </div>
+            <button class="close-btn" id="closeModal">CLOSE</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

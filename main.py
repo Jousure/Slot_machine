@@ -132,13 +132,5 @@ def spin(balance):
     
 
 def main():
-    balance = deposit()
-    while True:
-        print(f"current balance is ${balance}")
-        answer = input("Press enter to spin (q to quit): ")
-        if answer == "q":
-            break
-        balance += spin(balance)
-    
-    print(f"You left with ${balance}")
-main()
+    # This function is no longer used - web interface handles the game
+    pass

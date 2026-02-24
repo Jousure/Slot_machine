@@ -1,0 +1,607 @@
+/* Pixelated Arcade Style */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(135deg, #ffeef8, #e8f5ff, #fff0e8);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6b5b95;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 182, 193, 0.1),
+            rgba(255, 182, 193, 0.1) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.arcade-cabinet {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.screen {
+    background: #fff9f6;
+    border: 8px solid #ffb6c1;
+    border-radius: 20px;
+    padding: 20px;
+    width: 600px;
+    box-shadow: 
+        0 0 50px rgba(255, 182, 193, 0.4),
+        inset 0 0 20px rgba(255, 218, 224, 0.3);
+    position: relative;
+}
+
+.screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(255, 182, 193, 0.1) 100%);
+    pointer-events: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #ffb6c1;
+}
+
+.title {
+    font-size: 24px;
+    color: #ff69b4;
+    text-shadow: 
+        2px 2px 0 #ff1493,
+        4px 4px 0 #ffb6c1,
+        6px 6px 10px rgba(255, 105, 180, 0.3);
+    animation: cuteGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cuteGlow {
+    from { text-shadow: 2px 2px 0 #ff1493, 4px 4px 0 #ffb6c1, 6px 6px 10px rgba(255, 105, 180, 0.3); }
+    to { text-shadow: 2px 2px 0 #ff69b4, 4px 4px 0 #ff1493, 6px 6px 20px rgba(255, 105, 180, 0.5); }
+}
+
+.credits {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.label {
+    color: #9b59b6;
+    font-size: 10px;
+}
+
+.value {
+    color: #ff69b4;
+    font-size: 14px;
+    text-shadow: 2px 2px 0 #ffb6c1;
+}
+
+.slot-machine {
+    background: #fff0f5;
+    border: 4px solid #dda0dd;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(221, 160, 221, 0.2);
+}
+
+.reels-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.reel {
+    background: #faf0ff;
+    border: 3px solid #e6e6fa;
+    border-radius: 10px;
+    width: 120px;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(221, 160, 221, 0.3);
+}
+
+.reel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255,182,193,0.3) 0%, transparent 10%, transparent 90%, rgba(255,182,193,0.3) 100%);
+    pointer-events: none;
+}
+
+.symbol {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
+.symbol:last-child {
+    border-bottom: none;
+}
+
+.symbol:nth-child(1) { color: #ff69b4; }
+.symbol:nth-child(2) { color: #87ceeb; }
+.symbol:nth-child(3) { color: #98fb98; }
+
+.reel.spinning .symbol {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-60px); }
+}
+
+.paylines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.payline {
+    position: absolute;
+    height: 3px;
+    background: #ff69b4;
+    opacity: 0;
+    box-shadow: 0 0 10px #ffb6c1;
+    transition: opacity 0.3s;
+}
+
+.payline.active {
+    opacity: 0.8;
+    animation: flash 0.5s ease-in-out infinite;
+}
+
+@keyframes flash {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+}
+
+#line1 { top: 30px; left: 20px; right: 20px; }
+#line2 { top: 90px; left: 20px; right: 20px; }
+#line3 { top: 150px; left: 20px; right: 20px; }
+
+.controls {
+    background: #fff5ee;
+    border: 3px solid #ffa07a;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.betting-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.bet-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-label {
+    color: #9b59b6;
+    font-size: 8px;
+}
+
+.bet-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.bet-btn {
+    background: #ffe4e1;
+    border: 2px solid #ffb6c1;
+    color: #9b59b6;
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bet-btn:hover {
+    background: #ffb6c1;
+    border-color: #ff69b4;
+    transform: translateY(-2px);
+}
+
+.bet-btn.active {
+    background: #ff69b4;
+    color: #fff;
+    border-color: #ff1493;
+    box-shadow: 0 0 10px #ffb6c1;
+}
+
+.bet-amount {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff0f5;
+    border: 2px solid #ffb6c1;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.adjust-btn {
+    background: #dda0dd;
+    border: 2px solid #9b59b6;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.adjust-btn:hover {
+    background: #ff69b4;
+    color: #fff;
+}
+
+#betAmount {
+    color: #ff69b4;
+    font-size: 12px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.total-bet {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #fff0f5;
+    border: 2px solid #ff69b4;
+    border-radius: 8px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.spin-btn {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    border: 3px solid #ff69b4;
+    color: #fff;
+    padding: 15px 30px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-shadow: 2px 2px 0 #ff1493;
+    box-shadow: 0 4px 0 #ff1493;
+}
+
+.spin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #ff1493;
+}
+
+.spin-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #ff1493;
+}
+
+.spin-btn:disabled {
+    background: #dda0dd;
+    border-color: #dda0dd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.max-bet-btn {
+    background: linear-gradient(135deg, #87ceeb, #98fb98);
+    border: 3px solid #87ceeb;
+    color: #fff;
+    padding: 15px 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 0 #98fb98;
+}
+
+.max-bet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #98fb98;
+}
+
+.message-display {
+    background: #fff0f5;
+    border: 3px solid #98fb98;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#messageText {
+    color: #98fb98;
+    font-size: 10px;
+    animation: cutePulse 1s ease-in-out infinite;
+}
+
+@keyframes cutePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    background: #fff5ee;
+    border: 2px solid #ffa07a;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    color: #9b59b6;
+    font-size: 6px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    color: #87ceeb;
+    font-size: 10px;
+}
+
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lever {
+    width: 60px;
+    height: 200px;
+    background: #ffb6c1;
+    border: 4px solid #ff69b4;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.lever:hover {
+    background: #ff69b4;
+}
+
+.lever-handle {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #ff69b4, #ff1493);
+    border-radius: 50%;
+    border: 3px solid #ffb6c1;
+    transition: all 0.3s;
+}
+
+.lever:active .lever-handle {
+    top: 120px;
+}
+
+.coin-slot {
+    width: 80px;
+    height: 80px;
+    background: #ffe4e1;
+    border: 4px solid #ffb6c1;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ff69b4;
+}
+
+.coin-slot:hover {
+    background: #ffb6c1;
+    border-color: #ff69b4;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 182, 193, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff9f6;
+    border: 4px solid #ff69b4;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+}
+
+.modal-content h2 {
+    color: #ff69b4;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.deposit-amounts {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.deposit-btn {
+    background: #ffe4e1;
+    border: 2px solid #ffb6c1;
+    color: #9b59b6;
+    padding: 10px 15px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.deposit-btn:hover {
+    background: #ff69b4;
+    color: #fff;
+    border-color: #ff1493;
+}
+
+.custom-deposit {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.custom-deposit input {
+    background: #fff0f5;
+    border: 2px solid #ffb6c1;
+    color: #9b59b6;
+    padding: 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    width: 120px;
+}
+
+.custom-deposit button {
+    background: #ffe4e1;
+    border: 2px solid #ffb6c1;
+    color: #9b59b6;
+    padding: 8px 15px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-deposit button:hover {
+    background: #ff69b4;
+    color: #fff;
+    border-color: #ff1493;
+}
+
+.close-btn {
+    background: #dda0dd;
+    border: 2px solid #9b59b6;
+    color: #fff;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    background: #ff69b4;
+    border-color: #ff1493;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .arcade-cabinet {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .screen {
+        width: 90vw;
+        max-width: 500px;
+    }
+    
+    .controls-panel {
+        flex-direction: row;
+    }
+    
+    .lever {
+        width: 50px;
+        height: 150px;
+    }
+    
+    .coin-slot {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+}
