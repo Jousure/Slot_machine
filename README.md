@@ -24,8 +24,6 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Then open your browser and go to `http://localhost:5000`
-
 ## 🎮 Game Features
 
 - **Retro arcade design** with pixelated aesthetics
@@ -49,28 +47,6 @@ Then open your browser and go to `http://localhost:5000`
   - `D`: Deposit
   - `M`: Max bet
 
-## 🎨 Visual Features
-
-- CRT monitor effect with scanlines
-- Neon glow animations
-- Floating particle effects
-- Pulsing text and UI elements
-- Responsive design for mobile devices
-
-## 📁 Project Structure
-
-```
-slot_machine/
-├── app.py              # Flask API server
-├── main.py             # Original Python game logic
-├── index.html          # Frontend HTML
-├── style.css           # Pixelated styling
-├── script.js           # JavaScript game logic
-├── requirements.txt    # Python dependencies
-├── README.md          # This file
-└── env/               # Virtual environment
-```
-
 ## 🔧 Dependencies
 
 - **Flask 2.3.3** - Web framework
@@ -86,15 +62,5 @@ slot_machine/
    - B symbols: 4x bet  
    - C symbols: 3x bet
    - D symbols: 2x bet
-
-## 🏆 Advanced Features (Future)
-
-- Wild symbols and multipliers
-- Diagonal and zigzag paylines
-- Progressive jackpot system
-- Sound effects and music
-- Achievement system
-- Leaderboards
-- Bonus mini-games
 
 Enjoy the retro arcade experience! 🕹️
