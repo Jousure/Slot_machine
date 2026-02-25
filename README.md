@@ -1,6 +1,8 @@
 # 🎰 Pixel Slot Machine
 
+
 <img width="365" height="64" alt="Screenshot 2026-02-25 152747" src="https://github.com/user-attachments/assets/c5afe41c-baea-43f2-b1cd-e08f49d90302" />
+
 
 A retro arcade-style slot machine with pixelated graphics and web interface.
 
