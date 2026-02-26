@@ -2,6 +2,9 @@
 
 A retro arcade-style slot machine with pixelated graphics and web interface.
 
+<img width="365" height="64" alt="Screenshot 2026-02-25 152747" src="https://github.com/user-attachments/assets/a1db2973-83f6-4ba6-9ebd-66ca602994f4" />
+
+
 ## 🚀 Quick Start
 
 ### Setup Virtual Environment
