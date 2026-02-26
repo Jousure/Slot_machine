@@ -1,7 +1,5 @@
 # 🎰 Pixel Slot Machine
 
-![Slot Machine Screenshot](assets/screenshot.png)
-
 A retro arcade-style slot machine with pixelated graphics and web interface.
 
 ## 🚀 Quick Start
